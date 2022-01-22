@@ -29,7 +29,7 @@ El desarrollo  integra el sistema de autentificación por defecto de Laravel, y 
 ## Instalación
 
 ```
-git clone https://github.com/theizerg/laradmin.git
+git clone https://github.com/technosystems/laradmin.git
 cd laradmin
 composer install
 ```
@@ -76,6 +76,6 @@ A continuación el listado de tecnologías y plugins utilizados en este desarrol
 
 #### Créditos
 
-Theizer González 
+Techno systems
 Backend web developer  
-theizerg@gmail.com | [@theizerg_](https://instagram.com/theizerg_)
+technosystems2123@gmail.com | [@technosystem777](https://instagram.com/technosystem777_)
