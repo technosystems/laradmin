@@ -1,0 +1,63 @@
+$fa-font-path: "../webfonts";
+
+//DataTable
+
+
+//Toastr
+@import "~vuexy/app-assets/vendors/css/extensions/toastr.min.css";
+
+// Pace-progress
+@import "~@dlghq/pace-progress/themes/blue/pace-theme-minimal.css";
+
+//Icheck
+@import "~icheck/skins/square/blue.css";
+
+//Iconos
+@import '~themify-icons/themify-icons/_themify-icons.scss';
+@import '~material-design-iconic-font/scss/material-design-iconic-font.scss';
+@import '~@icon/ionicons/ionicons.css';
+@import '~@icon/dripicons/dripicons.css';
+@import '~@icon/dashicons/dashicons.css';
+@import "@mdi/font/scss/materialdesignicons.scss";
+@import '~@fortawesome/fontawesome-free/css/all.min.css';
+
+//Animate
+@import '~animate.css/animate.css';
+
+//Vuexy
+@import '~vuexy/app-assets/vendors/css/vendors.min.css';
+
+@import '~vuexy/app-assets/vendors/css/tables/datatable/dataTables.bootstrap5.min.css';
+@import '~vuexy/app-assets/vendors/css/tables/datatable/responsive.bootstrap5.min.css';
+@import '~vuexy/app-assets/vendors/css/tables/datatable/buttons.bootstrap5.min.css';
+@import '~vuexy/app-assets/vendors/css/tables/datatable/rowGroup.bootstrap5.min.css';
+
+//Vuexy PLUGINS
+
+
+
+//Apexcharts
+@import '~vuexy/app-assets/vendors/css/charts/apexcharts.css';
+
+//Bootstrap
+
+@import '~vuexy/app-assets/css/bootstrap.css';
+@import '~vuexy/app-assets/css/bootstrap-extended.css';
+@import '~vuexy/app-assets/css/colors.css';
+@import '~vuexy/app-assets/css/components.css';
+@import '~vuexy/app-assets/css/themes/dark-layout.css';
+@import '~vuexy/app-assets/css/themes/bordered-layout.css';
+@import '~vuexy/app-assets/css/themes/semi-dark-layout.css';
+
+//style
+
+@import '~vuexy/app-assets/css/core/menu/menu-types/horizontal-menu.css';
+@import '~vuexy/app-assets/css/pages/dashboard-ecommerce.css';
+@import '~vuexy/app-assets/css/plugins/charts/chart-apex.css';
+@import '~vuexy/app-assets/css/plugins/extensions/ext-component-toastr.css';
+@import '~vuexy/app-assets/css/pages/authentication.css';
+@import '~vuexy/app-assets/css/pages/page-profile.css';
+@import '~vuexy/assets/css/style.css';
+
+
+
