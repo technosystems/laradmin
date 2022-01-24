@@ -5,8 +5,9 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-12">
-        <form method="POST" action="{{ route('admin.roles.store') }}" class="form-horizontal">
-          @csrf
+        <<form role="form" id="main-form" autocomplete="off">
+          <input type="hidden" id="_url" value="{{ route('admin.roles.store') }}">
+          <input type="hidden" id="_token" value="{{ csrf_token() }}">
           <div class="card card-line-primary">
             <!--Header-->
             <div class="card-header card-header-primary">
@@ -20,7 +21,8 @@
                 <label for="name" class="col-sm-2 col-form-label">Nombre del rol</label>
                 <div class="col-sm-7">
                   <div class="form-group">
-                    <input type="text" class="form-control" name="name" autocomplete="off" autofocus placeholder="Ingresar nombre de permiso">
+                    <input class="form-control" style="font-size: 15px;" id="name" name="name" placeholder="Nombre del nuevo role">
+                <span class="missing_alert text-danger" id="name_alert"></span>
                   </div>
                 </div>
               </div>
@@ -71,7 +73,7 @@
       </div>
     </div>
   </div>
-</div>
+</div> 
 @endsection
 @push('scripts')
     <script>
@@ -83,5 +85,5 @@
         });
       });
     </script>
-  
+  <script src="{{ asset('js/admin/role/create.js') }}"></script>
 @endpush

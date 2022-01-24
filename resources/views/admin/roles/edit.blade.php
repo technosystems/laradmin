@@ -3,10 +3,11 @@
 <div class="content">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-12">
-        <form method="POST" action="{{ route('admin.roles.update', $role->id) }}" class="form-horizontal">
-          @csrf
-          @method('PUT')
+      <div class="col-md-12"> 
+    
+         <form role="form" id="main-form" autocomplete="off" class="form-horizontal">
+            <input type="hidden" id="_url" value="{{ route('admin.roles.update', $role->id) }}">
+            <input type="hidden" id="_token" value="{{ csrf_token() }}">   
           <div class="card card-line-primary">
             <!--Header-->
             <div class="card-header card-header-primary">
@@ -79,4 +80,5 @@
         });
       });
     </script>
-@endpush
+     <script src="{{ asset('js/admin/role/edit.js') }}"></script>
+@endpush 

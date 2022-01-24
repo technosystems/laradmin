@@ -46,16 +46,17 @@ class RolesController extends Controller
      */
     public function store(Request $request)
     {
+
+       // dd($request);
+
          $role = Role::create($request->only('name'));
 
         // $role->permissions()->sync($request->input('permissions', []));
         $role->syncPermissions($request->input('permissions', []));
 
-        $log->user_id = auth()->user()->id;
-        $log->tx_descripcion = 'El usuario: '.auth()->user()->display_name.' Ha guardado nuevo role al sistema: '.$request->name.' a las: '
-        . date('H:m:i').' del día: '.date('d/m/Y');
+        
 
-        return redirect()->route('admin.roles.index');
+         return json_encode(['success' => true]);
     }
 
      /**
@@ -108,13 +109,7 @@ class RolesController extends Controller
         // $role->permissions()->sync($request->input('permissions', []));
         $role->syncPermissions($request->input('permissions', []));
 
-         $log = new LogSistema();
-        $log->user_id = auth()->user()->id;
-        $log->tx_descripcion = 'El usuario: '.auth()->user()->display_name.' Ha editado el role en el sistema sistema: '.$role->name.' a las: '
-        . date('H:m:i').' del día: '.date('d/m/Y');
-        $log->save();
-
-        return redirect()->route('admin.roles.index');
+         return json_encode(['success' => true]);
 
 
     }
