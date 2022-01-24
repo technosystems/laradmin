@@ -139,5 +139,4 @@
         });
       });
     </script>
-    <script src="{{ asset('js/admin/user/edit.js') }}"></script>
 @endpush

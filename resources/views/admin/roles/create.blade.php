@@ -73,7 +73,7 @@
   </div>
 </div>
 @endsection
-
+@push('scripts')
     <script>
       $(function () {
         $('input').iCheck({

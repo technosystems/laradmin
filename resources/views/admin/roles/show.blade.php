@@ -51,7 +51,8 @@
                   </div>
                   <div class="card-footer">
                     <div class="button-container">
-                      <button type="submit" class="btn btn-primary">Editar</button>
+                       <a href="{{ route('admin.roles.edit', $role->id) }}" class="btn btn btn-primary"> <i
+                          class="mdi mdi-pencil"></i> Editar permisos</a>
                     </div>
                   </div>
                 </div>
