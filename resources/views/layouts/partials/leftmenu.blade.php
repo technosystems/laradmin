@@ -41,7 +41,9 @@
                     <li><a class="nav-link d-flex align-items-center" href="{{ url('/dashboard') }}" ><i data-feather="home"></i><span data-i18n="Dashboards">Inicio</span></a>
                         
                     </li>
-                    <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link d-flex align-items-center" href="index.html" data-bs-toggle="dropdown"><i data-feather="lock"></i><span data-i18n="Dashboards">Seguridad</span></a>
+                    <li class="dropdown nav-item  text-white" data-menu="dropdown">
+                        
+                     <a class="dropdown-toggle nav-link d-flex align-items-center" href="index.html" data-bs-toggle="dropdown"><i data-feather="lock"></i><span data-i18n="Dashboards">Seguridad</span></a>
                         <ul class="dropdown-menu" data-bs-popper="none">
                            @can('VerUsuario')                    
                             <li class="{{ Active::check('admin/usuario') }} "><a class="dropdown-item d-flex align-items-center" href="{{ url('admin/usuario') }}" data-toggle="dropdown" data-i18n="Analytics"><i data-feather="user"></i><span data-i18n="Analytics">Usuarios</span></a>
@@ -49,6 +51,10 @@
                          @endcan
                           @can('VerRole')                    
                             <li class="{{ Active::check('admin/roles') }} "><a class="dropdown-item d-flex align-items-center" href="{{ url('admin/roles') }}" data-toggle="dropdown" data-i18n="Analytics"><i class="fas fa-user-tie"></i><span data-i18n="Analytics">Roles</span></a>
+                            </li>
+                         @endcan
+                          @can('VerPermisos')                    
+                            <li class="{{ Active::check('admin/permission') }} "><a class="dropdown-item d-flex align-items-center" href="{{ url('admin/permission') }}" data-toggle="dropdown" data-i18n="Analytics"><i class="fas fa-shield-alt"></i><span data-i18n="Analytics">Permisos</span></a>
                             </li>
                          @endcan
                         </ul>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;                                                                                                  
 use App\Models\Log\LogSistema;
 use App\Models\User;
 
@@ -22,6 +23,7 @@ class RolesController extends Controller
      });
         return view ('admin.roles.index', compact('roles'));
     }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -29,7 +31,11 @@ class RolesController extends Controller
      */
     public function create()
     {
-        return view ('admin.roles.create');
+        //abort_if(Gate::denies('role_create'), 403);
+
+        $permissions = Permission::all()->pluck('name', 'id');
+        // dd($permissions);
+        return view('admin.roles.create', compact('permissions'));
     }
 
     /**
@@ -40,31 +46,32 @@ class RolesController extends Controller
      */
     public function store(Request $request)
     {
-        $role = Role::create($request->all());
+         $role = Role::create($request->only('name'));
 
-        $log = new LogSistema();
-        
+        // $role->permissions()->sync($request->input('permissions', []));
+        $role->syncPermissions($request->input('permissions', []));
+
         $log->user_id = auth()->user()->id;
         $log->tx_descripcion = 'El usuario: '.auth()->user()->display_name.' Ha guardado nuevo role al sistema: '.$request->name.' a las: '
         . date('H:m:i').' del día: '.date('d/m/Y');
-        $log->save();
 
-        if ($role) {
-           
-           return redirect()->back();
-        }
+        return redirect()->route('admin.roles.index');
     }
 
-    /**
+     /**
      * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Role $role)
     {
-        //
+        //abort_if(Gate::denies('role_show'), 403);
+
+        $role->load('permissions');
+        return view('admin.roles.show', compact('role'));
     }
+
  
     /**
      * Show the form for editing the specified resource.
@@ -72,16 +79,19 @@ class RolesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Role $role)
     {
-        $role = Role::find(\Hashids::decode($id)[0]);
+        $permissions = Permission::all()->pluck('name', 'id');
+        $role->load('permissions');
+        // dd($role);
+        //return view('roles.edit', compact('role', 'permissions'));
 
         $log = new LogSistema();
         $log->user_id = auth()->user()->id;
         $log->tx_descripcion = 'El usuario: '.auth()->user()->display_name.' Ha ingresado para editar el role en el sistema sistema: '.$role->name.' a las: '
         . date('H:m:i').' del día: '.date('d/m/Y');
         $log->save();
-        return view('admin.roles.edit', ['role' => $role]);
+         return view('admin.roles.edit', compact('role', 'permissions'));
     }
 
     /**
@@ -91,19 +101,20 @@ class RolesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Role $role)
     {
-        $role = Role::find($id);
-        $role->guard_name = 'web';
-        $role->name = $request->name;
-        $role->icon = $request->icon;
+        $role->update($request->only('name'));
 
-        $role->save();
+        // $role->permissions()->sync($request->input('permissions', []));
+        $role->syncPermissions($request->input('permissions', []));
 
-        if ($role) {
-           
-           return redirect()->back();
-        }
+         $log = new LogSistema();
+        $log->user_id = auth()->user()->id;
+        $log->tx_descripcion = 'El usuario: '.auth()->user()->display_name.' Ha editado el role en el sistema sistema: '.$role->name.' a las: '
+        . date('H:m:i').' del día: '.date('d/m/Y');
+        $log->save();
+
+        return redirect()->route('admin.roles.index');
 
 
     }

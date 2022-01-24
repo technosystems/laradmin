@@ -1,154 +1,79 @@
 @extends('layouts.admin')
-
-@section('title', 'Permisos')
-@section('page_title', 'Permisos')
-
-
+@section('title','PERMISOS')
+@section('page_title', 'Listado de Permisos')
 @section('content')
-
-    <div class="">
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="card card-line-primary">
-            <div class="card-header">
-                <h5 class="font-weight-bold">Permisos {{ $name }}</h5>
-                <div class="card-tools"></div>
+<div class="content-header-left col-md-9 col-12 mb-2">
+      <div class="row breadcrumbs-top">
+          <div class="col-12">
+              <h2 class="content-header-title float-start mb-0">Permisos</h2>
+              <div class="breadcrumb-wrapper">
+                  <ol class="breadcrumb">
+                      <li class="breadcrumb-item"><a href="{{ url('admin/dashboard') }}">Inicio</a>
+                      </li>
+                      <li class="breadcrumb-item"><a href="#">Seguridad</a>
+                      </li>
+                      <li class="breadcrumb-item active">Permisos
+                      </li>
+                  </ol>
               </div>
-              <div class="card-body">
-               <form role="form" id="main-form">
-                <input type="hidden" id="_url" value="{{ url('admin/permission', [$name]) }}">
-                <input type="hidden" id="_token" value="{{ csrf_token() }}">
-                 <table class="table table-responsive table-striped">            
-                    <tr>
-                      <td>
-                        Ver usuarios<br>
-                        <div class="checkbox icheck">
-                          <label>
-                            <input type="checkbox" name="permissions[]" value="VerUsuario" {{ $role->hasPermissionTo('VerUsuario') ? 'checked' : '' }}>
-                          </label>
-                        </div>
-                      </td>
-                      <td>
-                        Agregar usuarios</br>
-                        <div class="checkbox icheck">
-                          <label>
-                            <input type="checkbox" name="permissions[]" value="RegistrarUsuario" {{ $role->hasPermissionTo('RegistrarUsuario') ? 'checked' : '' }}>
-                          </label>
-                        </div>
-                      </td>
-                      <td>
-                        Editar usuarios</br>
-                        <div class="checkbox icheck">
-                          <label>
-                            <input type="checkbox" name="permissions[]" value="EditarUsuario" {{ $role->hasPermissionTo('EditarUsuario') ? 'checked' : '' }}>
-                          </label>
-                        </div>
-                      </td>
-                      <td>
-                        Eliminar usuarios</br>
-                        <div class="checkbox icheck">
-                          <label>
-                            <input type="checkbox" name="permissions[]" value="EliminarUsuario" {{ $role->hasPermissionTo('EliminarUsuario') ? 'checked' : '' }}>
-                          </label>
-                        </div>
-                      </td>
-                       <td>
-                        Ver Roles<br>
-                        <div class="checkbox icheck">
-                          <label>
-                            <input type="checkbox" name="permissions[]" value="VerRole" {{ $role->hasPermissionTo('VerRole') ? 'checked' : '' }}>
-                          </label>
-                        </div>
-                      </td>
-                      <td>
-                        Agregar Roles</br>
-                        <div class="checkbox icheck">
-                          <label>
-                            <input type="checkbox" name="permissions[]" value="RegistrarRole" {{ $role->hasPermissionTo('RegistrarRole') ? 'checked' : '' }}>
-                          </label>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        Editar Roles</br>
-                        <div class="checkbox icheck">
-                          <label>
-                            <input type="checkbox" name="permissions[]" value="EditarRole" {{ $role->hasPermissionTo('EditarRole') ? 'checked' : '' }}>
-                          </label>
-                        </div>
-                      </td>
-                      <td>
-                        Eliminar Roles</br>
-                        <div class="checkbox icheck">
-                          <label>
-                            <input type="checkbox" name="permissions[]" value="EliminarRole" {{ $role->hasPermissionTo('EliminarRole') ? 'checked' : '' }}>
-                          </label>
-                        </div>
-                      </td>                  
-                       <td>
-                        Crear Permisos</br>
-                        <div class="checkbox icheck">
-                          <label>
-                            <input type="checkbox" name="permissions[]" value="CrearPermisos" {{ $role->hasPermissionTo('CrearPermisos') ? 'checked' : '' }}>
-                          </label>
-                        </div>
-                      </td>
-                      <td>
-                        Editar Permisos</br>
-                        <div class="checkbox icheck">
-                          <label>
-                            <input type="checkbox" name="permissions[]" value="EditarPermisos" {{ $role->hasPermissionTo('EditarPermisos') ? 'checked' : '' }}>
-                          </label>
-                        </div>
-                      </td>
-                 
-                     <td>
-                        Eliminar Permisos</br>
-                        <div class="checkbox icheck">
-                          <label>
-                            <input type="checkbox" name="permissions[]" value="EliminarPermisos" {{ $role->hasPermissionTo('EliminarPermisos') ? 'checked' : '' }}>
-                          </label>
-                        </div>
-                      </td> 
-                      <td>
-                        Ver historial de log-in</br>
-                        <div class="checkbox icheck">
-                          <label>
-                            <input type="checkbox" name="permissions[]" value="VerLogins" {{ $role->hasPermissionTo('VerLogins') ? 'checked' : '' }}>
-                          </label>
-                        </div>
-                      </td>          
-                    </tr>
-                     
-                  </table>
-                  <div class="form-group mt-2 mb-2">
-                   <label for="name">Contraseña actual</label>
-                   <input type="password" class="form-control " id="current_password" name="current_password" placeholder="Contraseña actual">
-                   <span class="missing_alert text-danger" id="current_password_alert"></span>
-                  </div>
-                  <button type="submit" class="btn blue darken-4 text-white ajax" id="submit">
-                    <i id="ajax-icon" class="fa fa-edit"></i> Editar
-                  </button>
-              </form>
-            </div>
           </div>
-        </div>  
       </div>
-    </div>
+  </div>
+   <button type="button" class="btn blue darken-4 text-white btn-primary float-left btn-md mb-2"data-bs-toggle="modal" data-bs-target="#exampleModalCenter"><i class="fas fa-plus-square"  data-bs-toggle="tooltip" data-bs-placement="top" title="Crear nuevo Usuario" data-container="body" data-animation="true"></i>
+            Nuevo Permiso
+    </button>
+  <div class="row">
+      <div class="col-lg-12">
+            <div class="card card-line-primary">
+                  <div class="card-header">
+                    <h4 class="card-title">Listado de permisos</h4>
+                  </div>
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table id="tableExport" class="display table table-striped table-hover" >
+                        <thead>
+                          <tr>
+                           <th>#</th>
+                            <th>Nombre completo</th>
+                            <th>Opciones</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          @foreach ($permissions as $element)
+                              <tr class="row{{ $element->id }}">
+                              <td>{{ $element->id }}</td>
+                              <td>{{ $element->name }}</td>
+                              <td>
+                                @can('EditarPermisos')
+                                   <a class="btn btn-primary btn-round" data-bs-toggle="modal" data-bs-target="#exampleModalCenter{{ $element->id }}"><i class="mdi mdi-pencil mt-2 text-white" data-bs-toggle="tooltip" data-placement="top"
+                                title="Editar Permiso."></i></a>
+                               @endcan
+                                @can('EliminarPermisos')
+                                  <form action="{{ route('admin.permission.destroy', $element->id) }}" method="POST"
+                                  style="display: inline-block;" onsubmit="return confirm('¿Desea eliminar?')">
+                                  @csrf
+                                  @method('DELETE')
+                                  <button class="btn btn-round btn-danger" type="submit" >
+                                   <i class="mdi mdi-delete mt-2 text-white" data-bs-toggle="tooltip" data-placement="top"
+                                title="Eliminar Permiso."></i>
+                                  </button>
+                                </form>
+                               @endcan
+                                 
+                              </td>
+                              </tr>
+                                @include('admin.permission.partials.modal.edit')
+
+                              @endforeach
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+        @include('admin.permission.partials.modal.create')
 
 
 @endsection
-
-@push('scripts')
- <script>
-  $(function () {
-    $('input').iCheck({
-      checkboxClass: 'icheckbox_square-blue',
-      radioClass: 'iradio_square-blue',
-      increaseArea: '20%' // optional
-    });
-  });
- </script>
-  <script src="{{ asset('js/admin/permission/index.js') }}"></script>
-@endpush

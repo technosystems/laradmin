@@ -18,12 +18,12 @@ class PermissionController extends Controller
         $this->middleware('permission:EditarPermisos')->only('create');
         $this->middleware('permission:VerPermisos')->only('show'); 
 
-    }
+    } 
 
 
     public function index()
     {
-        $role = Role::findByName('Usuario');
+        $permissions = Permission::get();
 
         $log = new LogSistema();
 
@@ -32,7 +32,7 @@ class PermissionController extends Controller
         . date('H:m:i').' del día: '.date('d/m/Y');
         $log->save();
 
-        return view('admin.permission.index', ['role' => $role]);
+        return view('admin.permission.index', ['permissions' => $permissions]);
     }
 
 
@@ -50,40 +50,47 @@ class PermissionController extends Controller
         $log->tx_descripcion  = 'El usuario: '.auth()->user()->display_name.' Ha ingresado a ver los permisos del Role: '.$role->name.' a las: '. date('H:m:i').' del día: '.date('d/m/Y');
         $log->save();
 
-        return view('admin.permission.index',compact('name','role'));
+        return view('admin.permission.asignar',compact('name','role'));
     }
 
 
 
 
-    public function update(UpdatePermission $request, $id)
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        Permission::create($request->only('name'));
+
+        return redirect()->route('admin.permission.index');
+    }
+
+
+    public function update(Request $request, Permission $permission)
+    {
+        $permission->update($request->only('name'));
+
+        return redirect()->route('admin.permission.index');
+    }
+
+
+     /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Permission $permission)
     {
         
-        $role = Role::findByName($id);
-        //////////////////dd($role);
 
-        if(! empty($request->permissions))
-        {
-            $role->syncPermissions($request->permissions);
-        }
-        else
-        {
-            $permissions =  Permission::all();
+        $permission->delete();
 
-            foreach ($permissions as $permission)
-            {
-                $role->revokePermissionTo($permission->name);
-            }
-        }
-
-        $log = new LogSistema();
-
-        $log->user_id         = auth()->user()->id;
-        $log->tx_descripcion  = 'El usuario: '.auth()->user()->display_name.' Ha modificado los permisos del Role: '.$role->name.' a las: '. date('H:m:i').' del día: '.date('d/m/Y');
-        $log->save();
-
-        return json_encode(['success' => true]);
+        return redirect()->route('admin.permission.index');
     }
-
 
 }

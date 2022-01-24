@@ -3,14 +3,14 @@
       <div class="modal-dialog modal-dialog-centered">
            <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Editar datos del role</h5>
+              <h5 class="modal-title" id="exampleModalLabel">Editar permiso</h5>
                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
-               {!! Form::model($element, ['route' => ['admin.roles.update',$element->id],'method' => 'PUT']) !!}
-              @include('admin.roles.partials.input.form')
+               {!! Form::model($element, ['route' => ['admin.permission.update',$element->id],'method' => 'PUT']) !!}
+              @include('admin.permission.partials.input.form')
               <br><br>
               <button type="submit" class="btn blue darken-4 text-white form-control">Guardar cambios</button>
                {!! Form::close()!!}
