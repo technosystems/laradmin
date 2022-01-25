@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeder;
+
 use Illuminate\Database\Seeder;
 
 class AdminTableSeeder extends Seeder
@@ -31,22 +33,22 @@ class AdminTableSeeder extends Seeder
 
         DB::table('tipo_documentos')->insert([
             'tipo_documento' => 'V'
-            
+
         ]);
 
         DB::table('tipo_documentos')->insert([
             'tipo_documento' => 'E'
-            
+
         ]);
 
         DB::table('tipo_documentos')->insert([
             'tipo_documento' => 'J'
-            
+
         ]);
 
 		DB::table('tipo_documentos')->insert([
             'tipo_documento' => 'G'
-            
+
         ]);
 
 
@@ -84,7 +86,7 @@ class AdminTableSeeder extends Seeder
         DB::table('monedas')->insert([
             'nombre' => 'Dólares',
             'simbolo' => 'U$S',
-            'redondeo' => 2            
+            'redondeo' => 2
         ]);
 
 
@@ -766,7 +768,7 @@ class AdminTableSeeder extends Seeder
 				'stock' => '10',
 				'created_at' => date('d/m/Y H:i:m')
 		]);
-		
+
 		DB::table('productos')->insert([
 				'codigo' => '436068453-3',
 				'nombre' => 'Seaweed Green Sheets ',
@@ -1035,26 +1037,26 @@ class AdminTableSeeder extends Seeder
 			'empresa' => 1,
 			'rut' => '827311221933',
 			'mail' => 'contacto@jojovo.com.es',
-			'direccion' => 'Libertad 2391',            
-			'telefono' => '23039314',            
+			'direccion' => 'Libertad 2391',
+			'telefono' => '23039314',
 			'created_at' => date('d/m/Y H:i:m')
 		]);
 		DB::table('clientes')->insert([
 			'nombre' => 'Andrés',
-			'apellido' => 'Suárez',		
+			'apellido' => 'Suárez',
 			'tipo_documento' => 1,
 			'mail' => 'andsuarez22@peretch.com',
-			'direccion' => '21 de Septiembre 551 Apto. 205',            
+			'direccion' => '21 de Septiembre 551 Apto. 205',
 			'telefono' => '099523412',
 			'created_at' => date('d/m/Y H:i:m'),
 			'genero' => 'm',
 		]);
 		DB::table('clientes')->insert([
 			'nombre' => 'Sofía',
-			'apellido' => 'Henderson',		
+			'apellido' => 'Henderson',
 			'tipo_documento' => 1,
 			'mail' => 'andsuarez22@peretch.com',
-			'direccion' => 'Rambla Gandhi 292. Apto. 1301',            
+			'direccion' => 'Rambla Gandhi 292. Apto. 1301',
 			'telefono' => '097612221',
 			'created_at' => date('d/m/Y H:i:m'),
 			'genero' => 'f',
@@ -1111,23 +1113,23 @@ class AdminTableSeeder extends Seeder
             ]);
 
         DB::table('tipo_pago_empleado')->insert([
-            'nb_tipo_pago_empleado' => 'Bono'   
+            'nb_tipo_pago_empleado' => 'Bono'
         ]);
 
         DB::table('tipo_pago_empleado')->insert([
-            'nb_tipo_pago_empleado' => 'Sueldo'          
+            'nb_tipo_pago_empleado' => 'Sueldo'
         ]);
 
         DB::table('tipo_pago_empleado')->insert([
-            'nb_tipo_pago_empleado' => 'Deduccion'          
+            'nb_tipo_pago_empleado' => 'Deduccion'
         ]);
-        
+
          DB::table('tipo_pago_empleado')->insert([
-            'nb_tipo_pago_empleado' => 'Comisión'          
+            'nb_tipo_pago_empleado' => 'Comisión'
         ]);
-           
+
 
     }
 
-        
+
 }
