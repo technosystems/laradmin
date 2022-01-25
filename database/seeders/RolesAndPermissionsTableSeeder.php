@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeder;
+
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
@@ -20,17 +22,17 @@ class RolesAndPermissionsTableSeeder extends Seeder
                                 'RegistrarUsuario',
                                 'EditarUsuario',
                                 'EliminarUsuario',
-                                
-                                
+
+
                                 /* Asignar permisos */
-                                'AsignarPermisos',                              
-                               
-                               
+                                'AsignarPermisos',
+
+
                                 'VerPermisos',
                                 'CrearPermisos',
                                 'EditarPermisos',
                                 'EliminarPermisos',
-                                
+
                                 /* Logins */
                                 'VerLogins',
                                 'VerLogSistema',
@@ -43,7 +45,7 @@ class RolesAndPermissionsTableSeeder extends Seeder
                                 'EliminarRole',
 
 
-                               
+
 
 
                               ];
@@ -54,11 +56,11 @@ class RolesAndPermissionsTableSeeder extends Seeder
         role admin we will assign all the permissions
         */
         $this->user_permissions = [
-                                    
+
 
 
                                     ];
-        
+
     }
 
 
